@@ -8,12 +8,20 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>java-sdk-parent</name>
+    <name>Java SDK Parent</name>
     <url>https://botanalytics.co</url>
-    
+
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <slf4j.version>1.7.25</slf4j.version>
     </properties>
+
+    <modules>
+        <module>java-sdk-core</module>
+        <module>java-sdk-rbm</module>
+    </modules>
 
     <build>
         <pluginManagement>
