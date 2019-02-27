@@ -23,19 +23,6 @@ public class BotanalyticsClientTest {
         BotanalyticsClient instance = new TestBotanalyticsClient(token, customDomain);
 
         assertEquals(instance.getBaseUri().toString(), "https://".concat(customDomain).concat("/v1/"));
-
-        ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-        JsonNode rootNode = OBJECT_MAPPER.readTree("{\"contentMessage\": {}}");
-
-        JsonNode contentMessageNode = rootNode.get("contentMessage");
-
-        ((ObjectNode) contentMessageNode).put("type", "image");
-        ((ObjectNode) contentMessageNode).put("fileUrl", "blabla url");
-
-        String payload = OBJECT_MAPPER.writeValueAsString(rootNode);
-
-        System.out.println(payload);
-        System.out.println(instance.getBaseUri().resolve("messages/rbm/"));
     }
 
     private static class TestBotanalyticsClient extends BotanalyticsClient {

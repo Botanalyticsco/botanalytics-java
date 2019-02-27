@@ -26,18 +26,43 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
 
     private final URI MESSAGES_URI = getBaseUri().resolve("messages/rbm/");
 
+    /**
+     * Constructs a Botanalytics client for Google RBM.
+     * @param token Botanalytics token
+     * @param domain Target Botanalytics API domain
+     * @param version Target Botanalytics API version
+     * @throws BotanalyticsConfigurationException Thrown when an invalid configuration is provided (e.g domain or version)
+     */
     public BotanalyticsRBMClient(String token, String domain, int version) throws BotanalyticsConfigurationException {
         super(token, domain, version);
     }
 
+    /**
+     * Constructs a Botanalytics client for Google RBM.
+     * @param token Botanalytics token
+     * @param domain Target Botanalytics API domain
+     * @throws BotanalyticsConfigurationException Thrown when an invalid configuration is provided (e.g domain or version)
+     */
     public BotanalyticsRBMClient(String token, String domain) throws BotanalyticsConfigurationException {
         super(token, domain);
     }
 
+    /**
+     * Constructs a Botanalytics client for Google RBM.
+     * @param token Botanalytics token
+     * @throws BotanalyticsConfigurationException Thrown when an invalid configuration is provided (e.g domain or version)
+     */
     public BotanalyticsRBMClient(String token) throws BotanalyticsConfigurationException {
         super(token);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentEvent AgentEvent} object.
+     * @param message {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentEvent AgentEvent} object
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logMessage(AgentEvent message) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         String payload = message.toString();
@@ -47,6 +72,13 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
         sendRequest(MESSAGES_URI, payload);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} object.
+     * @param message {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} object
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logMessage(AgentMessage message) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         String payload = message.toString();
@@ -56,6 +88,13 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
         sendRequest(MESSAGES_URI, payload);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.Empty Empty} object.
+     * @param empty {@link com.google.api.services.rcsbusinessmessaging.v1.model.Empty Empty} object
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logMessage(Empty empty) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         String payload = empty.toString();
@@ -65,6 +104,13 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
         sendRequest(MESSAGES_URI, payload);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.Capabilities Capabilities} object.
+     * @param capabilities {@link com.google.api.services.rcsbusinessmessaging.v1.model.Capabilities Capabilities} object
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logMessage(Capabilities capabilities) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         String payload = capabilities.toString();
@@ -74,6 +120,13 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
         sendRequest(MESSAGES_URI, payload);
     }
 
+    /**
+     * Logs an {@link javax.servlet.http.HttpServletRequest HttpServletRequest} object.
+     * @param request {@link javax.servlet.http.HttpServletRequest HttpServletRequest} object
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public String logMessage(HttpServletRequest request) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         try {
@@ -116,21 +169,53 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
         }
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} with image.
+     * @param message {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} object
+     * @param fileUrl URL of the image
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logImageMessage(AgentMessage message, String fileUrl) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         sendFilePayloadRequest(message, fileUrl, TYPE_IMAGE);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} with audio.
+     * @param message {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} object
+     * @param fileUrl URL of the audio
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logAudioMessage(AgentMessage message, String fileUrl) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         sendFilePayloadRequest(message, fileUrl, TYPE_AUDIO);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} with video.
+     * @param message {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} object
+     * @param fileUrl URL of the video
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logVideoMessage(AgentMessage message, String fileUrl) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         sendFilePayloadRequest(message, fileUrl, TYPE_VIDEO);
     }
 
+    /**
+     * Logs an {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} with file.
+     * @param message {@link com.google.api.services.rcsbusinessmessaging.v1.model.AgentMessage AgentMessage} object
+     * @param fileUrl URL of the file
+     * @throws BotanalyticsRequestException Thrown when the underlying HTTPS request to Botanalytics API failed
+     * @throws BotanalyticsAuthorizationException Thrown when the provided Botanalytics token is invalid or the bot is disabled
+     * @throws BotanalyticsJSONException Thrown when the provided object's JSON structure is invalid
+     */
     public void logFileMessage(AgentMessage message, String fileUrl) throws BotanalyticsRequestException, BotanalyticsAuthorizationException, BotanalyticsJSONException {
 
         sendFilePayloadRequest(message, fileUrl, TYPE_FILE);
