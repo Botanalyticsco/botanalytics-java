@@ -94,7 +94,13 @@ public class BotanalyticsRBMClient extends BotanalyticsClient {
 
             byte decodedResponse[] = Base64.getDecoder().decode(encodedResponse);
 
-            String payload = new String(decodedResponse, "UTF-8");
+            String decodedDataPayload = new String(decodedResponse, "UTF-8");
+
+            JsonNode dataDecodedNode = OBJECT_MAPPER.readTree(decodedDataPayload);
+
+            ((ObjectNode) messageNode).put("data_decoded", dataDecodedNode);
+
+            String payload = OBJECT_MAPPER.writeValueAsString(rootNode);
 
             getLogger().debug("Logging message: {}", payload);
 
