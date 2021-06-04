@@ -9,7 +9,7 @@
     <name>Java SDK Core</name>
 
     <properties>
-        <httpclient.version>4.5</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <jackson.version>[2.9.10.3,)</jackson.version>
     </properties>
 
